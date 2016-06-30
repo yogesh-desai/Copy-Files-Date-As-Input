@@ -1,6 +1,6 @@
 #!/bin/bash
 # This code takes Date as input in YYYYMMDD Format.
-# 
+# Copies the Files / FOlders to Destination if Source contains the files.
 
 StartDate=`date +"%Y%m%d" -d $1`  #"20160601"`
 EndDate=`date +"%Y%m%d" -d $2`    #"20160605"`
@@ -21,6 +21,8 @@ fi
 
 echo "StartDate: "$StartDate
 echo "EndDate: "$EndDate
+echo "Source Path: "$src
+echo "Destination Path: "$dest
 
 while [ "$StartDate" -le "$EndDate" ] ; 
 do 
@@ -34,4 +36,3 @@ do
 	StartDate=`date +"%Y%m%d" -d "$StartDate + 1 day"`; 
 done
 echo "All Done"
-
