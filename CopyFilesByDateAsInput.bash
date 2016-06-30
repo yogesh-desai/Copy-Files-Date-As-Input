@@ -12,19 +12,26 @@ then
     echo "bash `basename $0` 20160601 20160605"
     exit $E_BADARGS
 fi
+
+if [[ ! -d $src || ! -d $dest  ]]
+then
+	echo "Given Source or Destination Path does not Exists. Please check the Path."
+	exit $E_NOFILE
+fi
+
 echo "StartDate: "$StartDate
 echo "EndDate: "$EndDate
 
 while [ "$StartDate" -le "$EndDate" ] ; 
 do 
-#		if [ -d  $src$StartDate ]	    
-		  echo $src$StartDate
-		  
-		  mkdir -vp $dest$StartDate
-      cp $src$StartDate/*.* $dest$StartDate/
-	    
-	    # Increment Date by one day
-    	StartDate=`date +"%Y%m%d" -d "$StartDate + 1 day"`; 
+	if [ -d  $src$StartDate ]	    
+	  echo $src$StartDate
+	  
+	  mkdir -vp $dest$StartDate
+	  cp $src$StartDate/*.* $dest$StartDate/
+	fi    
+	  # Increment Date by one day
+	StartDate=`date +"%Y%m%d" -d "$StartDate + 1 day"`; 
 done
 echo "All Done"
 
